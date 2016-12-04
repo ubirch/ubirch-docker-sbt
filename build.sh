@@ -38,6 +38,9 @@ function build_container() {
 
 # publish the new docker container
 function publish_container() {
+		
+		fix_dockerfile_version
+	
   echo "Publishing Docker Container with version: ${CONTAINER_LABEL}"
   docker push ubirch/${CONTAINER_NAME}:${CONTAINER_LABEL} && docker push ubirch/${CONTAINER_NAME}
 
