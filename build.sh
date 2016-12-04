@@ -39,13 +39,19 @@ function build_container() {
 # publish the new docker container
 function publish_container() {
 		
-		fix_dockerfile_version
+		
+	if [ "v${GO_PIPELINE_LABEL}" = "v" ]; then	
+		PUBLISH_VERSION="latest"
+	else
+		PUBLISH_VERSION="v${GO_PIPELINE_LABEL}"
+	fi
+		
 	
-  echo "Publishing Docker Container with version: ${CONTAINER_LABEL}"
-  docker push ubirch/${CONTAINER_NAME}:${CONTAINER_LABEL} && docker push ubirch/${CONTAINER_NAME}
+  echo "Publishing Docker Container with version: ${PUBLISH_VERSION}"
+  docker push ubirch/${CONTAINER_NAME}:${PUBLISH_VERSION} && docker push ubirch/${CONTAINER_NAME}
 
   if [ $? -eq 0 ]; then
-    echo ${NEW_LABEL} > VAR/GO_PIPELINE_NAME_${GO_PIPELINE_NAME}
+    echo ${PUBLISH_VERSION} > VAR/GO_PIPELINE_NAME_${GO_PIPELINE_NAME}
   else
     echo "Docker push faild"
     exit 1
