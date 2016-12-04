@@ -26,7 +26,7 @@ function build_container() {
 
     echo "Building SBT container"
 
-    mkdir -p VAR && docker build --build-arg SBT_VERSION=$SBT_VERSION --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -t ubirch/${CONTAINER_NAME}:${CONTAINER_LABEL} -f Dockerfile.v${GO_PIPELINE_LABEL} .
+    mkdir -p VAR && docker build -t ubirch/${CONTAINER_NAME}:${CONTAINER_LABEL} -f Dockerfile.v${GO_PIPELINE_LABEL} .
 
 
     if [ $? -ne 0 ]; then
