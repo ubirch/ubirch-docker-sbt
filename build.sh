@@ -23,10 +23,16 @@ function fix_dockerfile_version() {
 function build_container() {
 
     fix_dockerfile_version
+	
+	if [ "v${GO_PIPELINE_LABEL}" = "v" ]; then	
+		PUBLISH_VERSION="latest"
+	else
+		PUBLISH_VERSION="v${GO_PIPELINE_LABEL}"
+	fi
 
     echo "Building SBT container"
 
-    mkdir -p VAR && docker build -t ubirch/${CONTAINER_NAME}:${CONTAINER_LABEL} -f Dockerfile.v${GO_PIPELINE_LABEL} .
+    mkdir -p VAR && docker build -t ubirch/${CONTAINER_NAME}:${PUBLISH_VERSION} -f Dockerfile.v${GO_PIPELINE_LABEL} .
 
 
     if [ $? -ne 0 ]; then
