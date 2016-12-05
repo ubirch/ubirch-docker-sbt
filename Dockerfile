@@ -6,7 +6,7 @@ ENV SBT_HOME /usr/local/sbt
 ENV PATH ${PATH}:${SBT_HOME}/bin
 ENV VCS_REF $VCS_REF
 ENV BUILD_DATE $BUILD_DATE
-ENV sbt.ivy.home /build/.ivy2
+ENV sbt.ivy.home /build
 
 
 # Install sbt
@@ -19,4 +19,4 @@ RUN echo "-ivy /build/.ivy2" >> $SBT_HOME/conf/sbtopts
 RUN mkdir -p /build
 VOLUME /build
 WORKDIR /build
-ENTRYPOINT [ "/usr/bin/java","-jar","/usr/local/sbt/bin/sbt-launch.jar", "-Dsbt.ivy.home=/build/.ivy2" ]
+ENTRYPOINT [ "/usr/bin/java","-jar","/usr/local/sbt/bin/sbt-launch.jar", "-Dsbt.ivy.home=/build" ]
