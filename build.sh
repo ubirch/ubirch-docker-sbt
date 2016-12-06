@@ -54,7 +54,13 @@ function publish_container() {
 		
 	
   echo "Publishing Docker Container with version: ${PUBLISH_VERSION}"
-  docker push ubirch/${CONTAINER_NAME}:${PUBLISH_VERSION} && docker push ubirch/${CONTAINER_NAME}
+  docker push ubirch/${CONTAINER_NAME}:${PUBLISH_VERSION} 
+    if [ $? -ne 0 ]; then
+        echo "Could not push ubirch/${CONTAINER_NAME}:${PUBLISH_VERSION} to Docker hub"
+        exit 1
+    fi
+  docker tag ubirch/${CONTAINER_NAME}:${PUBLISH_VERSION} ubirch/${CONTAINER_NAME}:latest 
+  docker push ubirch/${CONTAINER_NAME}:latest
 
   if [ $? -eq 0 ]; then
     echo ${PUBLISH_VERSION} > VAR/GO_PIPELINE_NAME_${GO_PIPELINE_NAME}
