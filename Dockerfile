@@ -6,7 +6,7 @@ ENV SBT_HOME /usr/local/sbt
 ENV PATH ${PATH}:${SBT_HOME}/bin
 ENV VCS_REF $VCS_REF
 ENV BUILD_DATE $BUILD_DATE
-ENV sbt.ivy.home /build
+ENV sbt.ivy.home /build/.ivy2
 
 
 # Install sbt
