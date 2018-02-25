@@ -19,4 +19,4 @@ RUN echo "-ivy /build/.ivy2" >> $SBT_HOME/conf/sbtopts
 RUN mkdir -p /build
 VOLUME /build
 WORKDIR /build
-ENTRYPOINT [ "/usr/bin/java","-jar","/usr/local/sbt/bin/sbt-launch.jar", "-Dsbt.ivy.home=/build" ]
+ENTRYPOINT [ "/usr/bin/java","-jar","/usr/local/sbt/bin/sbt-launch.jar", "-Dsbt.ivy.home=/build/.ivy2" ]
