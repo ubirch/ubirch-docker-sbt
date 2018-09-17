@@ -49,7 +49,7 @@ function publish_container() {
 	if [ "v${GO_PIPELINE_LABEL}" = "v" ]; then
 		PUBLISH_VERSION="latest"
 	else
-		PUBLISH_VERSION="v${GO_PIPELINE_LABEL}"
+		PUBLISH_VERSION="vOpenJDK_${GO_PIPELINE_LABEL}"
 	fi
 
 
